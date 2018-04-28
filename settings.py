@@ -1,0 +1,6 @@
+PROJECT_NAME = 'sample'
+DEBUG = True
+COOKIE_SECRET = PROJECT_NAME[:3] + PROJECT_NAME
+
+# mongo
+MONGO_URI = 'localhost:27017'
