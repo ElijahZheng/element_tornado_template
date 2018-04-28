@@ -10,9 +10,11 @@ module.exports = (options = {}) => ({
     index: "./src/main.js"
   },
   output: {
-    path: resolve(__dirname, "./"),
+    path: options.dev 
+      ? resolve(__dirname, "dist/")
+      : resolve(__dirname, "./"),
     filename: options.dev
-      ? "static/js/[name].js"
+      ? "static/[name].js"
       : "static/js/[name].js?[chunkhash]",
     chunkFilename: "static/js/[id].js?[chunkhash]",
     publicPath: options.dev ? "/assets/" : publicPath
@@ -51,7 +53,7 @@ module.exports = (options = {}) => ({
     }),
     new HtmlWebpackPlugin({
       template: "src/index.html",
-      filename: "templates/index.html"
+      filename: options.dev ? "index.html" : "templates/index.html"
     })
   ],
   resolve: {
@@ -78,3 +80,4 @@ module.exports = (options = {}) => ({
   },
   devtool: options.dev ? "#eval-source-map" : "#source-map"
 });
+
